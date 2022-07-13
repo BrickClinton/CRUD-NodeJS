@@ -1,0 +1,68 @@
+<%- include("partials/_header") %>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header">
+          <h5>Datos obtenidos</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>N°</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(data) { %>
+                <% for (var i = 0; i < data.length; i++){ %>
+                  <tr>
+                    <td><%= data[i].id %></td>
+                    <td><%= data[i].nameuser %></td>
+                    <td><%= data[i].address %></td>
+                    <td><%= data[i].phone %></td>
+                    <td>
+                      <a href="/delete/<%= data[i].id %>" class="btn btn-sm btn-danger">Delete</a>
+                      <a href="/update/<%= data[i].id %>" class="btn btn-sm btn-info">Update</a>
+                    </td>
+                  </tr>
+                <%} %>
+              <%} %>
+            </tbody>
+          </table>        
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <h5>Formulario de registro</h5>
+        </div>
+        <div class="card-body">
+          <form action="/add" method="post" autocomplete="off">
+            <div class="form-group">
+              <input type="text" placeholder="Nombre" class="form-control" name="nameuser">
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Dirección" class="form-control" name="address">
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Telefono" class="form-control" name="phone">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-block btn-primary">Send data</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/_footer") %>
